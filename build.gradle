@@ -33,7 +33,7 @@ dependencies {
 	implementation project(':order-service:order-messaging')
 	implementation project(':common:common-domain')
 
-
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

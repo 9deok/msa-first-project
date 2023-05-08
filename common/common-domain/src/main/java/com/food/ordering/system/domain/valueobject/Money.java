@@ -2,17 +2,18 @@ package com.food.ordering.system.domain.valueobject;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @Getter
 @EqualsAndHashCode
-@RequiredArgsConstructor(access = AccessLevel.PUBLIC)
+@RequiredArgsConstructor
 public class Money {
 
     private final BigDecimal amount;
+    public static final Money ZERO = new Money(BigDecimal.ZERO);
+
 
     public boolean isGreaterThanZero() {
         return this.amount != null && this.amount.compareTo(BigDecimal.ZERO) > 0;
