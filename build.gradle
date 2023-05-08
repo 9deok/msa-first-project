@@ -1,18 +1,38 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath "com.vanniktech:gradle-dependency-graph-generator-plugin:0.8.0"
+	}
+}
+
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.0.6'
 	id 'io.spring.dependency-management' version '1.1.0'
+	id 'com.vanniktech.dependency.graph.generator' version '0.8.0'
 }
 
 group = 'com.food.ordering.system'
-version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
 repositories {
 	mavenCentral()
 }
 
+ext {
+	projectVersion = '1.0-SNAPSHOT'
+}
+
 dependencies {
+	implementation project(':order-service:order-domain:order-domain-core')
+	implementation project(':order-service:order-domain:order-application-service')
+	implementation project(':order-service:order-application')
+	implementation project(':order-service:order-dataaccess')
+	implementation project(':order-service:order-messaging')
+
+
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
