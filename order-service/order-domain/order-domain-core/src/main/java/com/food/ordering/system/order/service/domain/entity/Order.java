@@ -33,6 +33,13 @@ public class Order extends AggregateRoot<OrderId> {
         initializeOrderItem();
     }
 
+    private void initializeOrderItem() {
+        long itemId = 1;
+        for (OrderItem orderItem : items) {
+            orderItem.initializeOrderItem(super.getId(), new OrderItemId(itemId++));
+        }
+    }
+
     public void validateOrder() {
         validateInitialOrder();
         validateTotalPrice();
@@ -65,13 +72,52 @@ public class Order extends AggregateRoot<OrderId> {
     }
 
     private void validateItemPrice(OrderItem orderItem) {
-
+        if (!orderItem.isPriceValid()) {
+            throw new OrderDomainException("Order item price: " + orderItem.getPrice().getAmount()
+                + " is not valid for product : " + orderItem.getProduct().getId().getValue());
+        }
     }
 
-    private void initializeOrderItem() {
-        long itemId = 1;
-        for (OrderItem orderItem : items) {
-            orderItem.initializeOrderItem(super.getId(), new OrderItemId(itemId++));
+    public void pay() {
+        if (orderStatus != OrderStatus.PENDING) {
+            throw new OrderDomainException("Order is not in correct state for initialization!");
+        }
+        orderStatus = OrderStatus.PAID;
+    }
+
+    public void approve() {
+        if (orderStatus != OrderStatus.PAID) {
+            throw new OrderDomainException("Order is not in correct state for approve operation!");
+        }
+        orderStatus = OrderStatus.APPROVED;
+    }
+
+    public void initCancel(List<String> failureMessages) {
+        if (orderStatus != OrderStatus.PAID) {
+            throw new OrderDomainException(
+                "Order is not in correct state for initCancel operation!");
+        }
+        orderStatus = OrderStatus.CANCELING;
+        updateFailureMessages(failureMessages);
+    }
+
+    public void cancel(List<String> failureMessages) {
+        if (!(orderStatus == OrderStatus.CANCELING || orderStatus == OrderStatus.PENDING)) {
+            throw new OrderDomainException(
+                "Order is not in correct state for cancel operation!");
+        }
+        orderStatus = OrderStatus.CANCELED;
+        updateFailureMessages(failureMessages);
+    }
+
+    private void updateFailureMessages(List<String> failureMessages) {
+        if (this.failureMessage != null && failureMessages != null) {
+            this.failureMessage
+                .addAll(failureMessages.stream().filter(message -> !message.isEmpty()).toList());
+        }
+
+        if (this.failureMessage == null) {
+            this.failureMessage = failureMessages;
         }
     }
 
