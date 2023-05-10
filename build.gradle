@@ -21,8 +21,10 @@ repositories {
     mavenCentral()
 }
 
+
 ext {
     projectVersion = '1.0-SNAPSHOT'
+    mockitoVersion = '4.5.1'
 }
 
 dependencies {
@@ -32,6 +34,8 @@ dependencies {
     implementation project(':order-service:order-dataaccess')
     implementation project(':order-service:order-messaging')
     implementation project(':common:common-domain')
+
+    implementation group: 'org.mockito', name: 'mockito-core', version: '4.5.1'
 
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
     implementation 'org.springframework.boot:spring-boot-starter'
