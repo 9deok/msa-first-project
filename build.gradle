@@ -34,6 +34,10 @@ dependencies {
     implementation project(':order-service:order-dataaccess')
     implementation project(':order-service:order-messaging')
     implementation project(':common:common-domain')
+    implementation project(':infrastructure:kafka:kafka-producer')
+    implementation project(':infrastructure:kafka:kafka-consumer')
+    implementation project(':infrastructure:kafka:kafka-model')
+    implementation project(':infrastructure:kafka:kafka-config-data')
 
     implementation group: 'org.mockito', name: 'mockito-core', version: '4.5.1'
 

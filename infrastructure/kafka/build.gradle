@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.food.ordering.system'
+version = 'unspecified'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://packages.confluent.io/maven"
+    }
+}
+
+dependencies {
+    implementation project(':infrastructure:kafka:kafka-producer')
+    implementation project(':infrastructure:kafka:kafka-consumer')
+    implementation project(':infrastructure:kafka:kafka-model')
+    implementation project(':infrastructure:kafka:kafka-config-data')
+
+    implementation group: 'org.springframework.kafka', name: 'spring-kafka', version: '3.0.6'
+    implementation('io.confluent:kafka-avro-serializer:7.4.0')
+    implementation group: 'org.apache.avro', name: 'avro', version: '1.11.1'
+
+
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
