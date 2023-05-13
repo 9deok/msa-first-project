@@ -11,6 +11,14 @@ repositories {
 
 dependencies {
     implementation project(':order-service:order-domain:order-application-service')
+    implementation project(':order-service:order-domain:order-domain-core')
+    implementation project(path: ':common:common-domain')
+
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '3.0.6'
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.6.0'
+
+
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
 
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
