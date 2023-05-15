@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "com.github.davidmc24.gradle.plugin.avro" version "1.7.1"
 }
 
 group = 'com.food.ordering.system'
@@ -10,10 +11,20 @@ repositories {
 }
 
 dependencies {
+    implementation "org.apache.avro:avro:1.11.1"
+
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
 
+apply plugin: "com.github.davidmc24.gradle.plugin.avro-base"
+
 test {
     useJUnitPlatform()
+}
+
+avro {
+    templateDirectory = "src/main/resources/avro"
+    enableDecimalLogicalType = true
+    stringType = "String "
 }
