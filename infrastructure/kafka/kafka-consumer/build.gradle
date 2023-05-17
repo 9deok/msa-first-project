@@ -10,6 +10,12 @@ repositories {
 }
 
 dependencies {
+    implementation project(':infrastructure:kafka:kafka-config-data')
+    implementation group: 'org.springframework.kafka', name: 'spring-kafka', version: '3.0.6'
+    implementation group: 'org.apache.avro', name: 'avro', version: '1.11.1'
+
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
+
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
