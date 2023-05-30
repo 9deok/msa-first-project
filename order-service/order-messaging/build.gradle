@@ -11,6 +11,9 @@ repositories {
 
 dependencies {
     implementation project(':order-service:order-domain:order-application-service')
+    implementation project(':infrastructure:kafka:kafka-producer')
+    implementation project(':infrastructure:kafka:kafka-consumer')
+    implementation project(':infrastructure:kafka:kafka-model')
 
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
