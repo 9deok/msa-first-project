@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '3.0.6'
 }
 
 group = 'com.food.ordering.system'
@@ -14,10 +15,17 @@ dependencies {
     implementation project(':infrastructure:kafka:kafka-producer')
     implementation project(':infrastructure:kafka:kafka-consumer')
     implementation project(':infrastructure:kafka:kafka-model')
+    implementation project(':order-service:order-domain:order-domain-core')
+    implementation project(path: ':common:common-domain')
+
+    implementation "org.apache.avro:avro:1.11.1"
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '3.0.6'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
 
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
+
 
 test {
     useJUnitPlatform()
