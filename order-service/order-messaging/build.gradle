@@ -20,6 +20,7 @@ dependencies {
 
     implementation "org.apache.avro:avro:1.11.1"
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '3.0.6'
+    implementation group: 'org.springframework.kafka', name: 'spring-kafka', version: '3.0.6'
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
 
     testImplementation platform('org.junit:junit-bom:5.9.1')
