@@ -14,11 +14,11 @@ public class RestaurantApprovalResponseMessageListenerImpl implements
 
     @Override
     public void orderApproved(RestaurantApprovalResponse restaurantApprovalResponse) {
-        
+
     }
 
     @Override
-    public void OrderRejected(RestaurantApprovalResponse restaurantApprovalResponse) {
+    public void orderRejected(RestaurantApprovalResponse restaurantApprovalResponse) {
 
     }
 }

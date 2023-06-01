@@ -6,5 +6,5 @@ public interface RestaurantApprovalResponseMessageListener {
 
     void orderApproved(RestaurantApprovalResponse restaurantApprovalResponse);
 
-    void OrderRejected(RestaurantApprovalResponse restaurantApprovalResponse);
+    void orderRejected(RestaurantApprovalResponse restaurantApprovalResponse);
 }
